@@ -31,6 +31,9 @@ headers = {
 	'Connection': 'keep-alive',
 }
 
+print('Spamming "skinamerica.fun" database...')
+print('Headers used to attack the offending db:\n{}'.format(headers))
+print('Cookies used to attack the offending db:\n{}'.format(cookies))
 
 while True:
 
@@ -49,7 +52,10 @@ while True:
 		'captcha_text': ''
 	}
 
-	print('Logging in with user {} and password {}'.format(username, password))
+	print('Params used to attack offending db:\n{}' .format(params))
+
+	print('Logging in with:\n- user     : {}\n- password : {}'.format(username, password))
 
 	response = requests.post('https://skinamerica.fun/auth', headers=headers, cookies=cookies, params=params)
-	print(response.status_code)
+	
+	print('Response from server: {}'.format(response.status_code))
