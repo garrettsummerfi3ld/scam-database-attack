@@ -1,6 +1,6 @@
 # scam-database-attack
 
-A python script to attack specific websites known to scam people
+A set of python scripts to attack specific websites known to scam people
 
 ## What does this do
 
@@ -12,15 +12,17 @@ For `bsctmw.com` this just send random login information in a basic DDoS fashion
 
 ## How to run
 
-***Recommended to run in a VPN***
+***Recommended to run with a VPN Active***
 
 1. Clone repo
-2. Run batch script
+2. Run `.py` script for offending website
 
 ## FAQ
 
-**Q: Is this illegal**
-A: Yes
+Q: Is this illegal?
 
-**Q: Why?**
-A: Why not
+A: Yes.
+
+Q: Why?
+
+A: Why not.

