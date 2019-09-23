@@ -14,17 +14,9 @@ For `bsctmw.com` this just send random login information in a basic DDoS fashion
 
 ***Recommended to run with a VPN Active***
 
-### Method 1: Run script standalone
-
-*Perfect for machines with `python3` already installed*
-
 1. Clone repo
 2. Install dependencies
 3. Run `.py` script for offending website
-
-### Method 2: Prebuilt executable
-
-*No fuss and works immediately with no `python3` installation*
 
 ## FAQ
 
